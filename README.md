@@ -83,19 +83,23 @@ The Arabic_Sentiment_Analysis.ipynb notebook contains the full pipeline:
 
 Dataset loading and cleaning.
 
+Dataset-link: https://huggingface.co/datasets/arbml/Arabic_Sentiment_Twitter_Corpus
+
 Arabic-specific emoji preprocessing.
 
 Fine-tuning AraBERT.
 
+Model-link: https://huggingface.co/aubmindlab/bert-base-arabertv02
+
 Detailed evaluation with Confusion Matrix and ROC curves
 
-3. API (FastAPI)
+2. API (FastAPI)
    
 Run the backend server to expose the model as a REST API:
 
 uvicorn api.main:app --reload
 
-5. Frontend (Streamlit)
+3. Frontend (Streamlit)
    
 Launch the interactive web interface:
 
