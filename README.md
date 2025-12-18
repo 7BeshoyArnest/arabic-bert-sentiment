@@ -7,20 +7,26 @@ It includes a training notebook, a FastAPI backend for model serving, and a Stre
 📁 Project Structure
 
 Arabic_Sentiment_Analysis/
+
 │
+
 ├── api/
 
 │   ├── __init__.py
+
 │   └── main.py           # FastAPI application for model inference
 
 │
 ├── streamlit_app/
+
 │   └── app.py            # Streamlit frontend for user-friendly UI
 
 │
+
 ├── sentiment_analysis_env/ # Virtual environment
 
 │
+
 └── Arabic_Sentiment_Analysis.ipynb # Model development and training notebook
 
 🚀 Features
