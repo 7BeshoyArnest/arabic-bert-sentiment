@@ -12,14 +12,14 @@ Arabic_Sentiment_Analysis/
 
 ├── api/
 
-│   ├── __init__.py
+│    ├── __init__.py
 
-│   └── main.py           # FastAPI application for model inference
+│    └── main.py           # FastAPI application for model inference
 
 │
 ├── streamlit_app/
 
-│   └── app.py            # Streamlit frontend for user-friendly UI
+│    └── app.py            # Streamlit frontend for user-friendly UI
 
 │
 
