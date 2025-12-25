@@ -104,3 +104,13 @@ uvicorn api.main:app --reload
 Launch the interactive web interface:
 
 streamlit run streamlit_app/app.py
+
+Note: For portfolio and demo purposes, the FastAPI backend is run within the Streamlit application process.
+
+Future Improvements:
+
+Separate backend deployment
+
+Containerized FastAPI service
+
+Authentication & rate limiting
