@@ -219,6 +219,11 @@ Model monitoring & logging
 
 Cloud deployment (AWS / GCP / Azure)
 
+
+Live Demo:
+
+https://7beshoyarnest-arabic-bert-sentiment-streamlit-appapp-juapkj.streamlit.app/
+
 👤 Author
 
 Beshoy Arnest
