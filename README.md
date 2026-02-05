@@ -179,7 +179,7 @@ uvicorn api.main:app --reload
 
 API documentation (Swagger):
 
-streamlit run streamlit_app/app.py
+http://127.0.0.1:8000/docs
 
 🔹 3. Run Streamlit Frontend
 
