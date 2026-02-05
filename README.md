@@ -1,8 +1,16 @@
-Arabic Sentiment Analysis 
+Arabic Sentiment Analysis 🧠🇸🇦
 
-This project implements an end-to-end sentiment analysis pipeline for Arabic text using a fine-tuned transformer model.
+An end-to-end Arabic Sentiment Analysis system built using a fine-tuned Transformer model.
 
-It includes a training notebook, a FastAPI backend for model serving, and a Streamlit frontend for user interaction.
+The project covers the full ML lifecycle: data preprocessing, model training, evaluation, API serving, frontend visualization, and containerization.
+
+It is designed as a real-world NLP application, not just a notebook.
+
+📌 Overview
+
+This project performs binary sentiment classification (Positive / Negative) on Arabic text using a fine-tuned AraBERT model.
+
+It supports Arabic emojis, handles noisy Twitter text, and exposes the model via a FastAPI backend with a Streamlit frontend for real-time interaction.
 
 📁 Project Structure
 
@@ -12,105 +20,225 @@ Arabic_Sentiment_Analysis/
 
 ├── api/
 
-│      ├── __init__.py
+│   ├── __init__.py
 
-│      └── main.py           # FastAPI application for model inference
+│   └── main.py                # FastAPI backend (model inference API)
 
 │
+
 ├── streamlit_app/
 
-│    └── app.py            # Streamlit frontend for user-friendly UI
+│   └── app.py                 # Streamlit frontend UI
 
 │
 
-├── sentiment_analysis_env/ # Virtual environment
+├── sentiment_analysis_env/    # Python virtual environment (local)
 
 │
 
-└── Arabic_Sentiment_Analysis.ipynb # Model development and training notebook
+├── Arabic_Sentiment_Analysis.ipynb    # Model training & evaluation notebook
+
+│                              
+
+├── requirements.txt
+
+├── Dockerfile
+
+└── README.md
 
 🚀 Features
+🔹 Fine-Tuned Arabic Transformer
 
-Fine-tuned Model: Uses aubmindlab/bert-base-arabertv02 specifically optimized for Arabic.
+Based on aubmindlab/bert-base-arabertv02
 
+Fine-tuned specifically for Arabic sentiment classification
 
+Model source:
 
-Custom Emoji Tokenization: Processes Arabic text by "demojizing" and adding emojis as special tokens to the vocabulary for better sentiment capture.
+https://huggingface.co/aubmindlab/bert-base-arabertv02
 
+🔹 Advanced Emoji Handling
 
+Arabic tweets often rely heavily on emojis
 
-Scalable API: FastAPI backend to handle inference requests.
+Emojis are:
 
-Interactive UI: Streamlit web app for real-time sentiment prediction.
+   Demojized into Arabic text
+   
+   Added as custom tokens to the tokenizer vocabulary
+
+Improves sentiment signal significantly
+
+🔹 Scalable Backend (FastAPI)
+
+REST API for sentiment prediction
+
+Clean request/response schema
+
+Ready for containerization and production deployment
+
+🔹 Interactive Frontend (Streamlit)
+
+User-friendly web interface
+
+Real-time predictions
+
+Confidence scores
+
+Clear sentiment visualization
+
+🔹 GPU-Ready & Dockerized
+
+Built on PyTorch 2.5.1 + CUDA 12.1
+
+Dockerfile optimized for inference
+
+Ready for cloud or local GPU deployment
 
 📊 Model Performance
 
-The model was trained on the arbml/Arabic_Sentiment_Twitter_Corpus dataset, achieving high accuracy in binary classification (Positive/Negative).
+The model was trained on the Arabic Sentiment Twitter Corpus and evaluated on a held-out test set.
 
-Test Accuracy: ~94.55% 
+Dataset source:
 
-F1 Score (Macro): ~94.55% 
+https://huggingface.co/datasets/arbml/Arabic_Sentiment_Twitter_Corpus
 
-AUC Score: 0.9861
+🔹 Test Results
 
-Class     Precision, Recall, F1-Score
+| Metric            | Score      |
 
-Negative  0.93,       0.96,    0.95
+| ----------------- | ---------- |
 
-Positive  0.96,       0.93,    0.95
+| Accuracy          | **94.55%** |
+
+| F1 Score (Macro)  | **94.55%** |
+
+| Balanced Accuracy | **94.57%** |
+
+| AUC               | **0.9861** |
+
+🔹 Per-Class Metrics
+ 
+| Class    |  Precision  |  Recall |  F1    |
+
+| -------- |  ---------  |  ------ |  ----  |
+
+| Negative |  0.93       |  0.96   |  0.95  |
+
+| Positive |  0.96       |  0.93   |  0.95  |
+
 
 🛠️ Installation
 
-1-Clone the repository:
+1️⃣ Clone the Repository
 
 git clone https://github.com/your-username/Arabic_Sentiment_Analysis.git
 
 cd Arabic_Sentiment_Analysis
 
-2-Set up the environment:
+2️⃣ Create Virtual Environment
 
 python -m venv sentiment_analysis_env
 
-source sentiment_analysis_env/bin/activate  # On Windows: sentiment_analysis_env\Scripts\activate
+Activate:
+
+sentiment_analysis_env\Scripts\activate
+
+3️⃣ Install Dependencies
 
 pip install -r requirements.txt
 
 💻 Usage
 
-1. Training & Analysis
+🔹 1. Model Training & Analysis
 
-The Arabic_Sentiment_Analysis.ipynb notebook contains the full pipeline:
+The notebook Arabic_Sentiment_Analysis.ipynb includes:
 
-Dataset loading and cleaning.
+Dataset loading and validation
 
-Dataset-link: https://huggingface.co/datasets/arbml/Arabic_Sentiment_Twitter_Corpus
+Arabic-specific preprocessing
 
-Arabic-specific emoji preprocessing.
+Emoji demojization and tokenizer expansion
 
-Fine-tuning AraBERT.
+Fine-tuning AraBERT
 
-Model-link: https://huggingface.co/aubmindlab/bert-base-arabertv02
+Comprehensive evaluation:
 
-Detailed evaluation with Confusion Matrix and ROC curves
-
-2. API (FastAPI)
+   Confusion Matrix
    
-Run the backend server to expose the model as a REST API:
+   ROC Curve
+   
+   Precision / Recall / F1
+
+🔹 2. Run FastAPI Backend
+
+Start the inference API:
 
 uvicorn api.main:app --reload
 
-3. Frontend (Streamlit)
-   
-Launch the interactive web interface:
+API documentation (Swagger):
 
 streamlit run streamlit_app/app.py
 
-Note: For portfolio and demo purposes, the FastAPI backend is run within the Streamlit application process.
+🔹 3. Run Streamlit Frontend
 
-Future Improvements:
+Launch the web interface:
 
-Separate backend deployment
+streamlit run streamlit_app/app.py
 
-Containerized FastAPI service
+Default UI:
+
+http://localhost:8501
+
+🐳 Docker Support
+
+Build the image:
+
+docker build -t arabic-sentiment-analysis .
+
+Run with GPU support:
+
+docker run --gpus all -p 8503:8503 arabic-sentiment-analysis
+
+📝 Note
+
+For portfolio and demonstration purposes, the FastAPI backend is executed within the same runtime environment as the Streamlit application.
+
+🔮 Future Improvements
+
+Separate FastAPI & Streamlit using Docker Compose
+
+Neutral sentiment class (3-class classification)
+
+Arabic dialect detection
 
 Authentication & rate limiting
+
+Model monitoring & logging
+
+Cloud deployment (AWS / GCP / Azure)
+
+👤 Author
+
+Beshoy Arnest
+
+Computer Science Graduate | AI & Data Science
+
+GitHub: https://github.com/7BeshoyArnest
+
+LinkedIn: https://www.linkedin.com/in/beshoy-arnest-a3548a23a/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
