@@ -47,6 +47,7 @@ Arabic_Sentiment_Analysis/
 └── README.md
 
 🚀 Features
+
 🔹 Fine-Tuned Arabic Transformer
 
 Based on aubmindlab/bert-base-arabertv02
